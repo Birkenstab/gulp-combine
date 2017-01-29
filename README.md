@@ -4,6 +4,7 @@ gulp-combine is a plugin for gulp that enables you to write modules in the nodej
 
 ### Example
 Just write your code like in node (except require without ./ at the beginning)
+
 ##### main.js:
 ```javascript
 const mathUtil = require("mathUtil");
@@ -49,6 +50,17 @@ gulp.task("default", () => {
         .pipe(gulp.dest("build"));
 });
 ```
+
+### Options
+Options can be specified as Object in 
+```javascript
+.pipe(gulpCombine({
+    mainModule: "main"
+}))
+```
+#### Available Options
+* mainModule (required): set the module that is called when the output code is executed
+* outputFile: filename of the output file 
 
 ### Tests
 ```sh
