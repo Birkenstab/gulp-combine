@@ -1,0 +1,41 @@
+{
+  "name": "gulp-combine",
+  "version": "0.0.1",
+  "description": "Combines files written in a node-style module syntax to a single file for use in Browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Birkenstab/gulp-combine.git"
+  },
+  "keywords": [
+    "gulp",
+    "modules",
+    "combine",
+    "commonjs",
+    "requirejs",
+    "concat",
+    "fast",
+    "browser",
+    "concat"
+  ],
+  "author": "Birkenstab <npm@birkenstab.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Birkenstab/gulp-combine/issues"
+  },
+  "homepage": "https://github.com/Birkenstab/gulp-combine#readme",
+  "dependencies": {
+    "gulp-util": "^3.0.8",
+    "through2": "^2.0.3",
+    "vinyl": "^2.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-files": "^1.4.0",
+    "gulp": "^3.9.1",
+    "mocha": "^3.2.0"
+  }
+}
