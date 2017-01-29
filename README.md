@@ -50,6 +50,11 @@ gulp.task("default", () => {
 });
 ```
 
+### Tests
+```sh
+$ npm test
+```
+
 ### Todos
 
  - Gulp-Sourcemaps compatibility
