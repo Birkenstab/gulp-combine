@@ -28,6 +28,7 @@ module.exports = {
   - module.exports = ...
   - module caching
   - Just 1 kB of minified API
+  - gulp-sourcemaps support
 
 ### Installation
 
@@ -66,10 +67,6 @@ Options can be specified as Object in
 ```sh
 $ npm test
 ```
-
-### Todos
-
- - Gulp-Sourcemaps compatibility
 
 License
 ----

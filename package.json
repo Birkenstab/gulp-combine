@@ -1,6 +1,6 @@
 {
   "name": "gulp-combine",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Combines files written in a node-style module syntax to a single file for use in Browser",
   "main": "index.js",
   "scripts": {
@@ -29,13 +29,16 @@
   "homepage": "https://github.com/Birkenstab/gulp-combine#readme",
   "dependencies": {
     "gulp-util": "^3.0.8",
+    "source-map": "^0.5.6",
     "through2": "^2.0.3",
-    "vinyl": "^2.0.1"
+    "vinyl": "^2.0.1",
+    "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-files": "^1.4.0",
     "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.4.1",
     "mocha": "^3.2.0"
   }
 }

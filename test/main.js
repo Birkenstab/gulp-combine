@@ -8,6 +8,8 @@ const vm = require("vm");
 const chai = require("chai");
 const chaiFiles = require('chai-files');
 const gulp = require("gulp");
+const sourcemaps = require("gulp-sourcemaps");
+const SourceMapConsumer = require("source-map").SourceMapConsumer;
 
 chai.use(chaiFiles);
 const expect = chai.expect;
@@ -120,11 +122,61 @@ describe("gulp-combine", function() {
             });
     });
 
+    it("sourcemap should be correct", (done) => {
+        gulp.src("test/sampleSourceFiles/*.js")
+            .pipe(sourcemaps.init())
+            .pipe(gulpCombine({
+                mainModule: "mainModule.js"
+            }))
+            .pipe(sourcemaps.write("."))
+            .pipe(gulp.dest("test/testOutput/test8/"))
+            .on("end", () => {
+                // This chunk of code is from util.js
+                const codePart = `        for (let i = 0; i < 100; i++) {
+            require("anotherModule"); // Require module 100 times
+        }`;
+                // Load output code
+                const code = fs.readFileSync("test/testOutput/test8/output.js").toString("utf-8");
+                // Load Sourcemap
+                const sourcemap = fs.readFileSync("test/testOutput/test8/output.js.map");
+                const consumer = new SourceMapConsumer(sourcemap.toString("utf-8"));
+                // Load source file the codePart is from
+                const sourceFile = fs.readFileSync("test/sampleSourceFiles/util.js").toString("utf-8");
+
+                // The line of util.js the codePart is contained in
+                const sourceLineNumber = getLineNumber(sourceFile, codePart);
+                // The line of the output the codePart is contained in
+                const outputLineNumber = getLineNumber(code, codePart);
+
+                const result = consumer.originalPositionFor({
+                    line: outputLineNumber,
+                    column: 0
+                });
+
+                expect(result.source).to.equal("util.js"); // source filename
+                expect(result.line).to.equal(sourceLineNumber); // source line number
+
+                done();
+            });
+    });
+
 });
+
+/**
+ * Returns the line number a chunk of code is located
+ * @param code
+ * @param codePart chunk of code
+ * @returns {number} line number
+ */
+function getLineNumber(code, codePart) {
+    const position = code.indexOf(codePart);
+    code = code.substring(0, position );
+    return (code.match(/\n/g) || []).length + 1;
+}
 
 function deleteFolderRecursive(path) {
     if( fs.existsSync(path) ) {
-        fs.readdirSync(path).forEach(function(file,index){
+        fs.readdirSync(path).forEach(function(file){
             let curPath = path + "/" + file;
             if(fs.lstatSync(curPath).isDirectory()) { // recurse
                 deleteFolderRecursive(curPath);
@@ -135,3 +187,5 @@ function deleteFolderRecursive(path) {
         fs.rmdirSync(path);
     }
 }
+
+// TODO running combine multiple times should produce same results (state should be reset)
