@@ -1,4 +1,5 @@
 # gulp-combine
+[![NPM version][npm-image]][npm-url]
 
 gulp-combine is a plugin for gulp that enables you to write modules in the nodejs style and then combines them with minimal api footprint to a single file for you that runs in your browser without any additional dependency.
 
@@ -72,3 +73,7 @@ License
 ----
 
 MIT
+
+
+[npm-image]: https://img.shields.io/npm/v/npm.svg
+[npm-url]: https://www.npmjs.com/package/gulp-combine
