@@ -53,7 +53,6 @@ function addFile(file, encoding, callback) {
     if (file.isStream()) {
         // file.contents is a Stream - https://nodejs.org/api/stream.html
         this.emit("error", new PluginError(PLUGIN_NAME, "Streams not supported yet!"));
-
     } else if (file.isBuffer()) {
         latestFile = file;
 
@@ -149,7 +148,7 @@ function resetState() {
     lineCount = getLineCount(controller.toString("utf-8"));
 }
 
-module.exports = function(options) {
+module.exports = function (options) {
     // Initialize state only when the method is actually called
     resetState();
 

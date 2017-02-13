@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const chai = require("chai");
-const chaiFiles = require('chai-files');
+const chaiFiles = require("chai-files");
 const gulp = require("gulp");
 const sourcemaps = require("gulp-sourcemaps");
 const SourceMapConsumer = require("source-map").SourceMapConsumer;
@@ -17,8 +17,7 @@ const file = chaiFiles.file;
 
 const gulpCombine = require("../");
 
-describe("gulp-combine", function() {
-
+describe("gulp-combine", () => {
     after(() => {
         deleteFolderRecursive("test/testOutput/");
     });
@@ -61,14 +60,10 @@ describe("gulp-combine", function() {
             .on("end", () => {
                 const directory = "test/sampleSourceFiles";
                 let files = fs.readdirSync(directory);
-                files = files.filter((file) => {
-                    return file.endsWith(".js");
-                });
-                files = files.map((file) => {
-                    return fs.readFileSync(path.join(directory, file));
-                });
-                for (const currntFile of files) {
-                    expect(file("test/testOutput/test4/output.js")).to.contain(currntFile);
+                files = files.filter(sourceFile => sourceFile.endsWith(".js"));
+                files = files.map(sourceFile => fs.readFileSync(path.join(directory, sourceFile)));
+                for (const currentFile of files) {
+                    expect(file("test/testOutput/test4/output.js")).to.contain(currentFile);
                 }
                 done();
             });
@@ -159,7 +154,6 @@ describe("gulp-combine", function() {
                 done();
             });
     });
-
 });
 
 /**
@@ -170,21 +164,21 @@ describe("gulp-combine", function() {
  */
 function getLineNumber(code, codePart) {
     const position = code.indexOf(codePart);
-    code = code.substring(0, position );
+    code = code.substring(0, position);
     return (code.match(/\n/g) || []).length + 1;
 }
 
-function deleteFolderRecursive(path) {
-    if( fs.existsSync(path) ) {
-        fs.readdirSync(path).forEach(function(file){
-            let curPath = path + "/" + file;
-            if(fs.lstatSync(curPath).isDirectory()) { // recurse
+function deleteFolderRecursive(folder) {
+    if (fs.existsSync(folder)) {
+        fs.readdirSync(folder).forEach((currentFile) => {
+            const curPath = folder + "/" + currentFile;
+            if (fs.lstatSync(curPath).isDirectory()) {
                 deleteFolderRecursive(curPath);
-            } else { // delete file
+            } else {
                 fs.unlinkSync(curPath);
             }
         });
-        fs.rmdirSync(path);
+        fs.rmdirSync(folder);
     }
 }
 

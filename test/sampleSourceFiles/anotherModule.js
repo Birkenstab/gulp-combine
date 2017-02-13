@@ -6,6 +6,6 @@ if (typeof timesExecuted !== "undefined") {
     timesExecuted++;
 }
 
-exports.foo = function(a,b) {
-    return a*b;
+exports.foo = function (a, b) {
+    return a * b;
 };

@@ -5,7 +5,7 @@
 /**
  * This file is included in the generated code for the Web Browser to handle require(moduleName) function of the modules
  */
-const gulpModuleManager = new (function() {
+const gulpModuleManager = new (function () {
     // Modules that are available for 'require()' but are not used yet:
     const availableModules = new Map();
     // Modules that are cached because they were already loaded via 'require(moduleName)'
@@ -61,6 +61,7 @@ const gulpModuleManager = new (function() {
         }
         return cachedModules.get(name);
     }
+
     this.requireModule = requireModule; // Make the function available in global scope
 
     /**
@@ -83,7 +84,7 @@ const gulpModuleManager = new (function() {
 class ModuleLoadingError extends Error {
 
     constructor(moduleName) {
-        super("Module '" + moduleName + "' cannot be found!");
+        super(`Module '${moduleName}' cannot be found!`);
     }
 }
 
