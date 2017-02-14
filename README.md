@@ -75,5 +75,5 @@ License
 MIT
 
 
-[npm-image]: https://img.shields.io/npm/v/npm.svg
+[npm-image]: https://img.shields.io/npm/v/gulp-combine.svg
 [npm-url]: https://www.npmjs.com/package/gulp-combine
