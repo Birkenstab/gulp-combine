@@ -3,6 +3,14 @@
 
 gulp-combine is a plugin for gulp that enables you to write modules in the CommonJS style (NodeJS style) and then combines them with minimal api footprint to a single file for you that runs in your browser without any additional dependency.
 
+### Installation
+
+Install the npm module and save as dev-dependency:
+
+```sh
+$ npm install --save-dev gulp-combine
+```
+
 ### Example
 Just write your code like in node (except require without ./ at the beginning)
 
@@ -30,14 +38,6 @@ module.exports = {
   - module caching
   - Just 1 kB of minified API
   - gulp-sourcemaps support
-
-### Installation
-
-Install the npm module and save as dev-dependency:
-
-```sh
-$ npm install --save-dev gulp-combine
-```
 
 ### Sample gulpfile.js
 ```javascript
