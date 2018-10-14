@@ -12,7 +12,7 @@ $ npm install --save-dev gulp-combine
 ```
 
 ### Example
-Just write your code like in node (except require without ./ at the beginning)
+Just write your code like in NodeJS (except require without ./ at the beginning)
 
 ##### main.js:
 ```javascript
