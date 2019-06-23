@@ -1,3 +1,5 @@
+# DISCONTINUED!
+This package is not supported anymore, has known security vulnerabilities
 # gulp-combine
 [![NPM version][npm-image]][npm-url]
 
